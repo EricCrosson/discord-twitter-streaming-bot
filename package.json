@@ -1,0 +1,28 @@
+{
+    "name": "discord-twitter-streaming-bot",
+    "version": "1.0.0",
+    "license": "Apache-2.0",
+    "description": "Discord bot for streaming tweets in real time",
+    "keywords": [
+        "discord",
+        "twitter"
+    ],
+    "main": "index.js",
+    "bin": {
+        "discord-twitter-streaming-bot": "index.js"
+    },
+    "dependencies": {
+        "discord.js": "^11.2.1",
+        "lodash": "^4.17.4",
+        "twitter": "^1.7.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ericcrosson/discord-twitter-streaming-bot.git"
+    },
+    "author": "Eric Crosson",
+    "bugs": {
+        "url": "https://github.com/ericcrosson/discord-twitter-streaming-bot/issues"
+    },
+    "homepage": "https://github.com/ericcrosson/discord-twitter-streaming-bot"
+}
