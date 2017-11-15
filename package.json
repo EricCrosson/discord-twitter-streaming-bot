@@ -12,10 +12,18 @@
         "discord-twitter-streaming-bot": "index.js"
     },
     "dependencies": {
+        "bufferutil": "^3.0.3",
         "discord.js": "^11.2.1",
+        "erlpack": "github:hammerandchisel/erlpack",
+        "find-config": "^1.0.0",
+        "libsodium-wrappers": "^0.7.2",
         "lodash": "^4.17.4",
+        "node-opus": "^0.2.7",
+        "opusscript": "0.0.4",
+        "sodium": "^2.0.1",
         "twit": "^2.2.9",
         "twitter": "^1.7.1",
+        "uws": "^8.14.1",
         "winston": "^3.0.0-rc1"
     },
     "repository": {

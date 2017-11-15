@@ -6,7 +6,13 @@
 'use strict;'
 
 const _ = require('lodash')
-const config = require('./config.json')
+
+////
+// Load user configuration
+const findConfig = require('find-config')
+const configFile = findConfig('config.json')
+const config = require(configFile)
+////
 
 ////
 // Logging configuration
@@ -53,9 +59,11 @@ _.each(config.streams, (stream, streamName) => {
 const twitterIds = _.keys(streams)
 ////
 
+////
+// Configure streams
 let stream = twitter.stream('statuses/filter', {follow: twitterIds})
 stream.on('tweet', (tweet) => {
-    logger.info(`Event on stream ${streamNames[tweet.user['id']]}`)
+    logger.info(`Event on stream '${streamNames[tweet.user['id']]}'`)
     logger.debug(`Received tweet: ${tweet.text}`)
     discord
         .channels
@@ -71,5 +79,9 @@ stream.on('disconnect', (disconnectMessage) => {
     logger.warn('Received a disconnect message from twitter:')
     logger.warn(disconenctMessage)
 })
+////
 
+////
+// Start streaming
 discord.login(config.discord_token)
+////
