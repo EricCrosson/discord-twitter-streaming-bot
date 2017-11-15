@@ -42,5 +42,5 @@ Create and populate a  `~/.config/discord-twitter-streaming-bot/config.json` fil
 ## Use
 
 ```bash
-node index.js
+discord-twitter-streaming-bot
 ```
