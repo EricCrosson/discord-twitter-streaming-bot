@@ -36,8 +36,8 @@ Create and populate a  `config.json` file from the following template
 }
 ```
 
-> Note that only id numbers are used, and all labels are for human
-> convenience only.
+> Note that all queries to external services rely on id numbers, and
+> all labels are for human convenience only.
 
 ## Use
 
