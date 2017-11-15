@@ -10,7 +10,7 @@ const _ = require('lodash')
 ////
 // Load user configuration
 const findConfig = require('find-config')
-const configFile = findConfig('config.json')
+const configFile = findConfig('discord-twitter-streaming-bot.json')
 const config = require(configFile)
 ////
 
