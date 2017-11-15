@@ -26,11 +26,11 @@ Create and populate a  `~/.config/discord-twitter-streaming-bot/config.json` fil
     "streams" : {
         "favorite_user" : {
             "twitter_id" : "123456789",
-            "channel_id" : "09876543211234567890"
+            "discord_channel_id" : "09876543211234567890"
         },
         "favorite_news" : {
             "twitter_id" : "246886422",
-            "channel_id" : "10293847565748392010"
+            "discord_channel_id" : "10293847565748392010"
         }
     }
 }
