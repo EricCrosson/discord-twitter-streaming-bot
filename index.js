@@ -55,13 +55,11 @@ _.each(config.streams, (stream, streamName) => {
     streams[stream['twitter_id']] = stream['discord_channel_id']
     streamNames[stream['twitter_id']] = streamName
 })
-
-const twitterIds = _.keys(streams)
 ////
 
 ////
 // Configure streams
-let stream = twitter.stream('statuses/filter', {follow: twitterIds})
+let stream = twitter.stream('statuses/filter', {follow: _.keys(streams)})
 stream.on('tweet', (tweet) => {
     logger.info(`Event on stream '${streamNames[tweet.user['id']]}'`)
     logger.debug(`Received tweet: ${tweet.text}`)
@@ -74,11 +72,10 @@ stream.on('tweet', (tweet) => {
 stream.on('connected', (response) => {
     logger.info('Listener ready: twitter')
 })
-stream.on('error', (error) => { throw error })
 stream.on('disconnect', (disconnectMessage) => {
-    logger.warn('Received a disconnect message from twitter:')
-    logger.warn(disconenctMessage)
+    logger.warn(`Received a disconnect message from twitter: ${disconnectMessage}`)
 })
+stream.on('error', (error) => { throw error })
 ////
 
 ////
