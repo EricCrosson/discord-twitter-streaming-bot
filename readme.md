@@ -10,7 +10,7 @@ npm install --save discord-twitter-streaming-bot
 
 ## Configure
 
-Create and populate a  `~/.config/discord-twitter-streaming-bot.json` file from the following template
+Create and populate a  `~/.config/discord-twitter-streaming-bot/config.json` file from the following template
 
 
 ```
