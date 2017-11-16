@@ -1,6 +1,6 @@
 {
     "name": "discord-twitter-streaming-bot",
-    "version": "1.7.1",
+    "version": "1.8.0",
     "license": "Apache-2.0",
     "description": "Discord bot for streaming tweets in real time",
     "keywords": [
