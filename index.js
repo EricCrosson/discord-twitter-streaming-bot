@@ -3,6 +3,9 @@
 //
 // Create twitter streams from twitter users to discord channels.
 
+// TODO: populate backdata after a period of downtime (consider the
+// need to timestamp this information)
+
 'use strict;'
 
 const _ = require('lodash')
