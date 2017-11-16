@@ -13,7 +13,8 @@
     },
     "scripts": {
         "start": "node index.js",
-        "dev": "nodemon -e 'js' -x 'npm start || true'"
+        "dev": "nodemon -e 'js' -x 'npm start || true'",
+        "docker": "docker-compose up"
     },
     "dependencies": {
         "bufferutil": "^3.0.3",

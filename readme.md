@@ -44,3 +44,9 @@ Create and populate a  `~/.config/discord-twitter-streaming-bot/config.json` fil
 ```bash
 discord-twitter-streaming-bot
 ```
+
+Or launch with `docker-compose` to ensure the process stays alive
+
+```bash
+npm run docker
+```
