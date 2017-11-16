@@ -68,7 +68,7 @@ _.each(config.streams, (stream, streamName) => {
 ////
 
 ////
-// Configure streams
+// Stream configuration
 let stream = twitter.stream('statuses/filter', {follow: _.keys(streams)})
 stream.on('tweet', (tweet) => {
     // fixme: optionally stream retweets and/or favorites
