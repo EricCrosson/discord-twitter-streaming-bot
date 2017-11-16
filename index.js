@@ -71,7 +71,7 @@ _.each(config.streams, (stream, streamName) => {
 // Configure streams
 let stream = twitter.stream('statuses/filter', {follow: _.keys(streams)})
 stream.on('tweet', (tweet) => {
-    // FIXME: opt-in to straem retweets
+    // fixme: optionally stream retweets and/or favorites
     if (tweet.hasOwnProperty('retweeted_status')) return;
     logger.info(`Event on stream '${streamNames[tweet.user['id']]}'`)
     logger.debug(`Received tweet: ${tweet.text}`)
