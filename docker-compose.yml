@@ -1,0 +1,12 @@
+---
+version: '2'
+
+services:
+  node:
+    image: 'node:8.9.0'
+    restart: 'unless-stopped'
+    user: 'node'
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    command: "npm start"
