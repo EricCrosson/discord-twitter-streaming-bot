@@ -8,13 +8,6 @@
 const _ = require('lodash')
 
 ////
-// Load user configuration
-const findConfig = require('find-config')
-const configFile = findConfig('discord-twitter-streaming-bot/config.json')
-const config = require(configFile)
-////
-
-////
 // Logging configuration
 const winston = require('winston')
 const logger = winston.createLogger({
@@ -22,6 +15,21 @@ const logger = winston.createLogger({
     format: winston.format.simple(),
     transports: [new winston.transports.Console()]
 })
+////
+
+////
+// Load user configuration
+const findConfig = require('find-config')
+// FIXME: provide flag to install template as a compromise for this
+// hardcoded path
+const configFile = findConfig('discord-twitter-streaming-bot/config.json')
+if (configFile === null) {
+    logger.error('Could not find configuration file')
+    logger.error('Aborting')
+    process.exit(1)
+}
+logger.info(`Configuration file: '${configFile}'`)
+const config = require(configFile)
 ////
 
 ////
