@@ -14,7 +14,7 @@ const _ = require('lodash')
 // Logging configuration
 const winston = require('winston')
 const logger = winston.createLogger({
-    level: 'info',
+    level: 'debug',
     format: winston.format.simple(),
     transports: [new winston.transports.Console()]
 })
@@ -40,7 +40,7 @@ const config = require(configFile)
 const discord = new (require('discord.js')).Client()
 
 discord.on('ready', () => {
-    logger.info('Listener ready: discord')
+    logger.info('Client ready: discord')
 })
 ////
 
@@ -63,6 +63,7 @@ var streamNames = {}
 _.each(config.streams, (stream, streamName) => {
     streams[stream['twitter_id']] = stream['discord_channel_id']
     streamNames[stream['twitter_id']] = streamName
+    logger.info(`Creating stream '${streamName}':\t${stream['twitter_id']} ===> ${stream['discord_channel_id']}`)
 })
 ////
 
@@ -80,12 +81,19 @@ stream.on('tweet', (tweet) => {
         .send(tweet.text)
 })
 
+stream.on('connect', (request) => {
+    logger.debug(`Client connecting: twitter`)
+})
 stream.on('connected', (response) => {
-    logger.info('Listener ready: twitter')
+    logger.info('Client ready: twitter')
 })
 stream.on('disconnect', (disconnectMessage) => {
     logger.warn(`Received a disconnect message from twitter: ${disconnectMessage}`)
 })
+stream.on('reconnect', (request, response, connectInterval) => {
+    logger.warn('Reconnection attempt to twitter is scheduled')
+})
+stream.on('warning', (warning) => { logger.warn(warning) })
 stream.on('error', (error) => { throw error })
 ////
 
