@@ -15,7 +15,7 @@ Create and populate a  `~/.config/discord-twitter-streaming-bot/config.json` fil
 
 ```json
 {
-    "discord_token" : "xxxx.xxxx.xxxx",
+    "username" : "twitter-username",
     "twitter" : {
         "consumer_key" : "xxxx",
         "consumer_secret" : "yyyy",
@@ -23,21 +23,12 @@ Create and populate a  `~/.config/discord-twitter-streaming-bot/config.json` fil
         "token_secret" : "honeypot"
     },
 
-    "streams" : {
-        "favorite_user" : {
-            "twitter_id" : "123456789",
-            "discord_channel_id" : "09876543211234567890"
-        },
-        "favorite_news" : {
-            "twitter_id" : "246886422",
-            "discord_channel_id" : "10293847565748392010"
-        }
-    }
+    "discord_token" : "xxxx.xxxx.xxxx",
+    "discord_channel_id": "xxxx"
 }
 ```
 
-> Note that all queries to external services rely on id numbers, and
-> all labels are for human convenience only.
+> Note that all queries to external services rely on id numbers.
 
 ## Use
 
