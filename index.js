@@ -6,6 +6,8 @@
 // TODO: populate backdata after a period of downtime (consider the
 // need to timestamp this information)
 
+// TODO: add bitmexrekt stream -- filter by two emojis or more
+
 'use strict;'
 
 const _ = require('lodash')
@@ -14,7 +16,7 @@ const _ = require('lodash')
 // Logging configuration
 const winston = require('winston')
 const logger = winston.createLogger({
-    level: 'debug',
+    level: 'info',
     format: winston.format.simple(),
     transports: [new winston.transports.Console()]
 })
@@ -23,8 +25,6 @@ const logger = winston.createLogger({
 ////
 // Load user configuration
 const findConfig = require('find-config')
-// FIXME: provide flag to install template as a compromise for this
-// hardcoded path
 const configFile = findConfig('discord-twitter-streaming-bot/config.json')
 if (configFile === null) {
     logger.error('Could not find configuration file')
@@ -60,24 +60,15 @@ const twitter = new Twit({
 var streams = {}
 var streamNames = {}
 
-_.each(config.streams, (stream, streamName) => {
-    streams[stream['twitter_id']] = stream['discord_channel_id']
-    streamNames[stream['twitter_id']] = streamName
-    logger.info(`Creating stream '${streamName}':\t${stream['twitter_id']} ===> ${stream['discord_channel_id']}`)
-})
-////
-
 ////
 // Stream configuration
-let stream = twitter.stream('statuses/filter', {follow: _.keys(streams)})
+let stream = twitter.stream('user', {id: config.username})
 stream.on('tweet', (tweet) => {
-    // fixme: optionally stream retweets and/or favorites
     if (tweet.hasOwnProperty('retweeted_status')) return;
-    logger.info(`Event on stream '${streamNames[tweet.user['id']]}'`)
-    logger.debug(`Received tweet: ${tweet.text}`)
+    logger.debug(`Received tweet: ${tweet}`)
     discord
         .channels
-        .find('id', streams[tweet.user['id']])
+        .find('id', config.discord_channel_id)
         .send(tweet.text)
 })
 
