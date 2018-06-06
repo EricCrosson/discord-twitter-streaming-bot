@@ -3,11 +3,6 @@
 //
 // Create twitter streams from twitter users to discord channels.
 
-// TODO: populate backdata after a period of downtime (consider the
-// need to timestamp this information)
-
-// TODO: add bitmexrekt stream -- filter by two emojis or more
-
 'use strict;'
 
 const _ = require('lodash')
@@ -56,20 +51,22 @@ const twitter = new Twit({
 ////
 
 ////
-// Data manipulation
-var streams = {}
-var streamNames = {}
-
-////
 // Stream configuration
 let stream = twitter.stream('user', {id: config.username})
 stream.on('tweet', (tweet) => {
     if (tweet.hasOwnProperty('retweeted_status')) return;
     logger.debug(`Received tweet: ${tweet}`)
-    discord
-        .channels
+
+    discord.channels
         .find('id', config.discord_channel_id)
-        .send(tweet.text)
+        .send({embed: {
+            author: {
+                name: tweet.user.name,
+                icon_url: tweet.user.profile_image_url_https,
+                url: `https://twitter.com/statuses/${tweet.id_str}`
+            },
+            description: tweet.text
+        }})
 })
 
 stream.on('connect', (request) => {
